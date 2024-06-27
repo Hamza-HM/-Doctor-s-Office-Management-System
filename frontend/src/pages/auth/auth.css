@@ -79,6 +79,8 @@ label {
 .forgot-password {
   font-size: 12px;
   font-weight: var(--font-medium);
+  color: var(--color-blue-dark);
+  text-decoration: none;
 }
 
 .remember-wrapper > * {
@@ -246,6 +248,14 @@ input::placeholder {
   font-size: 10px;
   display: block;
   margin: 0.25rem 0 0 0.5rem;
+  word-wrap: break-word;
+  max-width: 100%; /* Ensure it doesn't exceed the width of its container */
+}
+.success {
+  color: rgb(67, 128, 43);
+  font-size: 10px;
+  display: block;
+  margin: 20px 0 0 0;
   word-wrap: break-word;
   max-width: 100%; /* Ensure it doesn't exceed the width of its container */
 }

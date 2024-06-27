@@ -4,8 +4,8 @@ import { redirect } from "react-router-dom";
 
 // Simple protectedLoader function
 export const protectedLoader = () => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") !== "";
-  if (!isAuthenticated) {
+  const token = localStorage.getItem("accessToken"); // this needs to change
+  if (!token) {
     return redirect("/auth/login");
   }
   return null;

@@ -10,6 +10,7 @@ import Appointments from "@src/pages/dashboard/Appointments";
 import Login from "@src/pages/auth/Login";
 import ResetPassword from "@src/pages/auth/ResetPassword";
 import ConfirmPasswordReset from "@src/pages/auth/ConfirmPasswordReset";
+import { protectedLoader } from "@src/utils/auth/protectedLoader";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         <Layout />
       </AuthGuard>
     ),
-    // loader: protectedLoader,
+    loader: protectedLoader,
     children: [
       {
         path: "",

@@ -8,6 +8,7 @@ import {
   sendPasswordResetEmail,
   verifyPasswordResetCode,
   confirmPasswordReset,
+  FacebookAuthProvider,
   // updateProfile,
   // updateEmail,
   // updatePassword,
@@ -134,8 +135,24 @@ export const googleSignIn = createAsyncThunk<
   }
 });
 
-export const resetPassword = createAsyncThunk<
+export const facebookSignIn = createAsyncThunk<
+  User,
   void,
+  {
+    rejectValue: string;
+  }
+>("auth/facebookSignin", async (_, { rejectWithValue }) => {
+  try {
+    const provider = new FacebookAuthProvider();
+    const userCredential = await signInWithPopup(auth, provider);
+    return userCredential.user;
+  } catch (error) {
+    return rejectWithValue("An unknown error occurred");
+  }
+});
+
+export const resetPassword = createAsyncThunk<
+  string,
   ResetPasswordCredentials,
   {
     rejectValue: string;
@@ -145,6 +162,9 @@ export const resetPassword = createAsyncThunk<
   async ({ email }: ResetPasswordCredentials, { rejectWithValue }) => {
     try {
       await sendPasswordResetEmail(auth, email);
+      const res =
+        "Success! check your email for instructions to reset your password";
+      return res;
     } catch (error) {
       return rejectWithValue("An unknown error occurred");
     }

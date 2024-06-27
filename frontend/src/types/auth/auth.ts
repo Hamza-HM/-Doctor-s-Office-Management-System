@@ -1,4 +1,5 @@
 import { User as FirebaseUser } from "firebase/auth";
+import { FieldError, RegisterOptions, UseFormRegister } from "react-hook-form";
 
 export interface User extends FirebaseUser {
   stsTokenManager?: {
@@ -45,4 +46,50 @@ export interface AuthStateProps {
   isAuthenticated: boolean | null;
   loading: boolean;
   error: string;
+  success: string;
 }
+
+export interface FormSignupValues {
+  fullName: string;
+  email: string;
+  password: string;
+  termsBool?: boolean;
+}
+
+export interface LoginFormValues {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+export interface FormResetPassword {
+  email: string;
+}
+
+export interface FormConfirmResetPassword {
+  oobCode: string;
+}
+
+// export interface InputFieldProps {
+//   type: string;
+//   id: keyof TFormValues;
+//   label: string;
+//   register: UseFormRegister<TFormValues>;
+//   error?: FieldError;
+//   placeholder?: string;
+// }
+
+export type TFormValues = FormSignupValues &
+  LoginFormValues &
+  FormResetPassword &
+  FormConfirmResetPassword;
+
+export type InputFieldProps = {
+  type: string;
+  id: keyof TFormValues;
+  label: string;
+  register?: UseFormRegister<TFormValues>;
+  rules?: RegisterOptions;
+  errors?: FieldError;
+  placeholder?: string;
+};
