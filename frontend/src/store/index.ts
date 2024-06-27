@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import testReducer from "./reducers/testReducer";
+import authReducer from "./reducers/authReducer";
 import { appointments } from "./api/appointments";
 
 export const store = configureStore({
   reducer: {
-    counter: testReducer,
+    auth: authReducer,
     [appointments.reducerPath]: appointments.reducer,
   },
 
@@ -15,7 +15,6 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-
 export type AppDispatch = typeof store.dispatch;
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

@@ -1,11 +1,10 @@
 import { redirect } from "react-router-dom";
 
-const isAuthenticated = false;
-
 // Simple AuthGuard component
 
 // Simple protectedLoader function
 export const protectedLoader = () => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") !== "";
   if (!isAuthenticated) {
     return redirect("/auth/login");
   }
