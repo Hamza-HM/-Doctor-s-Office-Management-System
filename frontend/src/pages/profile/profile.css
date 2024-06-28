@@ -1,0 +1,69 @@
+.profile {
+  font-family: Poppins, sans-serif;
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 5.5rem;
+}
+
+.hero {
+  background-image: url("/images/profile-hero-img.png");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  position: relative;
+}
+
+.profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid white;
+  position: absolute;
+  top: 13.5rem;
+  left: 20px;
+  background-position: cover;
+}
+
+.edit-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-info {
+  margin-top: 80px;
+}
+
+.name {
+  margin: 0;
+  font-size: 24px;
+}
+
+.bio {
+  margin: 5px 0;
+  color: #555;
+}
+
+.location {
+  margin: 5px 0;
+  color: #777;
+}
+
+.description {
+  margin-top: 20px;
+  line-height: 1.6;
+}

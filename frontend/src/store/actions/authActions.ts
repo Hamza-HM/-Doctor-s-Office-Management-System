@@ -101,7 +101,11 @@ export const login = createAsyncThunk<
     );
     return userCredential.user;
   } catch (error) {
-    return rejectWithValue("An unknown error occurred");
+    let errorMessage = "Invalid or expired code";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return rejectWithValue(errorMessage);
   }
 });
 
