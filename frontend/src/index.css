@@ -14,6 +14,7 @@
   --color-blue-dark: #192252;
   --color-blue-lighter: #65a8fb;
   --color-gray-light: #c5d0e6;
+  --color-gray-lighter: #dfe8f6;
   --color-gray-darker: #d8d1d1;
 
   /*  font weights  */
@@ -28,10 +29,6 @@
 
   /*  font family  */
   --font-family-poppins: "Poppins", sans-serif;
-}
-
-body {
-  font-family: var(--font-family-poppins);
 }
 
 h1,
