@@ -11,11 +11,15 @@ import Login from "@src/pages/auth/Login";
 import ResetPassword from "@src/pages/auth/ResetPassword";
 import ConfirmPasswordReset from "@src/pages/auth/ConfirmPasswordReset";
 import { protectedLoader } from "@src/utils/auth/protectedLoader";
+import MedicalHistory from "@src/pages/dashboard/MedicalHistory";
+import PatientsList from "@src/pages/dashboard/PatientsList";
+import Messages from "@src/pages/dashboard/Messages";
+import Profile from "@src/pages/dashboard/Profile";
+import AuthLayout from "@src/layouts/AuthLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
     children: [
       {
         path: "",
@@ -24,7 +28,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "/",
     element: (
       <AuthGuard>
         <Layout />
@@ -33,18 +37,42 @@ const router = createBrowserRouter([
     loader: protectedLoader,
     children: [
       {
-        path: "",
+        path: "dashboard",
         element: <Dashboard />,
       },
       {
         path: "appointments",
         element: <Appointments />,
       },
+      {
+        path: "history",
+        element: <MedicalHistory />,
+      },
+      {
+        path: "patients",
+        element: <PatientsList />,
+      },
+      {
+        path: "messages",
+        element: <Messages />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "notifications",
+        element: <Profile />,
+      },
+      {
+        path: "settings",
+        element: <Profile />,
+      },
     ],
   },
   {
     path: "/auth",
-    element: <Layout />,
+    element: <AuthLayout />,
     children: [
       {
         path: "login",

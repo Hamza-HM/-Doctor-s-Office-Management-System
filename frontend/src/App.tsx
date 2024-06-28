@@ -10,11 +10,13 @@ import { store } from "./store";
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <GlobalAuthProvider>
-        <RouterProvider router={router} />
-      </GlobalAuthProvider>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <GlobalAuthProvider>
+          <RouterProvider router={router} />
+        </GlobalAuthProvider>
+      </Provider>
+    </>
   );
 };
 
