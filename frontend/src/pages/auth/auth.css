@@ -98,7 +98,9 @@ label {
   font-size: 12px;
 }
 
-input {
+input,
+textarea,
+select {
   width: 100%;
   padding: 13px 14px;
   border: 1.5px solid #c5d0e6;
@@ -107,11 +109,20 @@ input {
   transition: border-color 0.2s ease-in-out;
 }
 
-input:focus {
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 200px;
+  min-height: 132px;
+}
+
+input:focus,
+textarea:focus {
   border-color: var(--color-blue-lighter);
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #c5d0e6;
 }
 
@@ -157,35 +168,6 @@ input::placeholder {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-}
-
-.btn {
-  width: 100%;
-  padding: 15px 0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.btn:disabled {
-  background-color: var(--color-gray-darker);
-}
-
-.btn-primary {
-  background-color: var(--color-blue);
-  color: white;
-}
-
-.btn-google {
-  background-color: var(--color-white);
-  color: 000000;
-}
-
-.btn-facebook {
-  background-color: var(--color-white);
-  color: 000000;
 }
 
 .custom-border {

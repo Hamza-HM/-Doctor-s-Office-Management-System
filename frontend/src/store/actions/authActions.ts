@@ -15,11 +15,18 @@ import {
   // sendEmailVerification,
 } from "firebase/auth";
 
-import { auth, db } from "@src/firebase/firebaseConfig";
-import { ref, push, set } from "firebase/database";
+import { auth } from "@src/firebase/firebaseConfig";
 import { User } from "@src/types/auth/auth";
+import { createUserProfile, getUserProfile } from "./userActions";
+import { UserData } from "@src/types/auth/user";
 
-import { jwtDecode } from "@src/utils/auth/jwtDecode";
+const mockUser = {
+  location: "Alger, Algeria",
+  avatar: "/images/profile-avatar-img.png",
+  description:
+    "I'm a passionate software developer with 5 years of experience in web technologies. I love building user-friendly interfaces and solving complex problems. When I'm not coding, you can find me hiking or reading sci-fi novels.",
+  coverPhoto: "/images/profile-hero-img.png",
+};
 
 interface SignupCredentials {
   data: {
@@ -54,36 +61,40 @@ export const signup = createAsyncThunk<
   {
     rejectValue: string;
   }
->("auth/signup", async ({ data }: SignupCredentials, { rejectWithValue }) => {
-  try {
-    const { fullName, email, password } = data;
-    console.log(fullName, email, password);
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
-    const userId = push(ref(db, "users")).key;
+>(
+  "auth/signup",
+  async ({ data }: SignupCredentials, { rejectWithValue, dispatch }) => {
+    try {
+      const { fullName, email, password } = data;
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-    const res = await set(ref(db, `users/${userId}`), {
-      uid: user.uid,
-      email: user.email,
-      fullName,
-    });
-    console.log(res);
-    console.log("success", user);
-    return user;
-  } catch (error) {
-    let errorMessage = "";
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    } else {
-      errorMessage = "An unknown error occurred";
+      const userData: UserData = {
+        uid: user.uid,
+        email: user.email ?? "",
+        fullName,
+        location: mockUser.location,
+        description: mockUser.description,
+        avatar: mockUser.avatar,
+      };
+
+      await dispatch(createUserProfile(userData));
+      return user;
+    } catch (error) {
+      let errorMessage = "";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else {
+        errorMessage = "An unknown error occurred";
+      }
+      return rejectWithValue(errorMessage);
     }
-    return rejectWithValue(errorMessage);
   }
-});
+);
 
 export const login = createAsyncThunk<
   User,
@@ -221,24 +232,25 @@ export const updatePassword = createAsyncThunk<
   }
 );
 
-export const checkAuthStatus = createAsyncThunk<
-  { isAuthenticated: boolean; email: string | null },
+export const listenToAuthChanges = createAsyncThunk<
+  User | null,
   void,
   { rejectValue: string }
->("auth/checkAuthStatus", async (_, { rejectWithValue }) => {
-  try {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      const tokenData = jwtDecode(accessToken);
-      const email = tokenData.email;
-      return { isAuthenticated: true, email };
-    } else {
-      // If there's no access token, we still want to indicate that the user is not authenticated
-      return { isAuthenticated: false, email: null };
-    }
-  } catch (error) {
-    // Properly handle errors, such as failing to read from local storage
-    console.error(error);
-    return rejectWithValue("Failed to retrieve authentication status.");
-  }
+>("auth/listenToAuthChanges", async (_, { rejectWithValue, dispatch }) => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          dispatch(getUserProfile(user.uid));
+          resolve(user);
+        } else {
+          resolve(null);
+        }
+        unsubscribe(); // Unsubscribe after first auth state change
+      },
+      (error) => {
+        reject(rejectWithValue(error.message || "An error has occurred"));
+      }
+    );
+  });
 });

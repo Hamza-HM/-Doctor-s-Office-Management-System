@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaBell, FaCog, FaUser } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaBell, FaCog } from "react-icons/fa";
 import useLogoutLogic from "@src/hooks/useLogoutLogic";
 import { NavIcon } from "./NavIcon";
+import { useSelector } from "react-redux";
+import { RootState } from "@src/store";
 
 export const DesktopNav: React.FC = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { handleSubmit } = useLogoutLogic();
+  const navigate = useNavigate();
 
+  const { profile } = useSelector<RootState, RootState["user"]>(
+    (state) => state.user
+  );
   const closeAllDropdowns = () => {
     setIsNotificationOpen(false);
     setIsSettingsOpen(false);
@@ -36,38 +42,60 @@ export const DesktopNav: React.FC = () => {
     };
   }, []);
 
+  const handleRedirect = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <div className="desktop-nav">
-      <h1 className="logo">Healthy 24.</h1>
+      <h1 className="logo" onClick={handleRedirect}>
+        Healthy 24.
+      </h1>
       <div className="nav-icons">
         <NavIcon
           icon={<FaBell />}
           isOpen={isNotificationOpen}
           setIsOpen={setIsNotificationOpen}
-          dropdownContent="Notifications"
+          dropdownContent={
+            <Link className="dropdown-item" to="/profile">
+              Notification
+            </Link>
+          }
           closeOthers={() => closeOthers(setIsNotificationOpen)}
         />
         <NavIcon
           icon={<FaCog />}
           isOpen={isSettingsOpen}
           setIsOpen={setIsSettingsOpen}
-          dropdownContent="Settings"
+          dropdownContent={
+            <Link className="dropdown-item" to="/profile">
+              Settings
+            </Link>
+          }
           closeOthers={() => closeOthers(setIsSettingsOpen)}
         />
         <NavIcon
-          icon={<FaUser />}
-          isOpen={isProfileOpen}
-          setIsOpen={setIsProfileOpen}
+          icon={
+            <img
+              className="nav-avatar"
+              src={
+                profile?.avatar
+                  ? profile?.avatar
+                  : "/images/profile-avatar-img.png"
+              }
+              alt="Avatar"
+              onClick={() => navigate("/profile")}
+            />
+          }
           dropdownContent={
             <>
-              <Link className="dropdown-item" to="/profile">
-                Profile
-              </Link>
               <p className="dropdown-item" onClick={handleSubmit}>
                 Logout
               </p>
             </>
           }
+          isOpen={isProfileOpen}
+          setIsOpen={setIsProfileOpen}
           closeOthers={() => closeOthers(setIsProfileOpen)}
         />
       </div>

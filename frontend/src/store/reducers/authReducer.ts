@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  checkAuthStatus,
   facebookSignIn,
   googleSignIn,
+  listenToAuthChanges,
   login,
   logout,
   resetPassword,
@@ -119,18 +119,20 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
-      .addCase(checkAuthStatus.pending, (state) => {
-        state.loading = true;
+
+      .addCase(listenToAuthChanges.pending, (state) => {
+        state.loading = true; // Set loading to true while fetching user
       })
-      .addCase(checkAuthStatus.fulfilled, (state, action) => {
-        state.isAuthenticated = action.payload.isAuthenticated;
-        state.email = action.payload.email;
+      .addCase(listenToAuthChanges.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isAuthenticated = !!action.payload;
+        state.email = action.payload?.email;
+        state.loading = false;
         state.error = "";
-        state.loading = false;
       })
-      .addCase(checkAuthStatus.rejected, (state, action) => {
-        state.isAuthenticated = false;
+      .addCase(listenToAuthChanges.rejected, (state, action) => {
         state.loading = false;
+        state.isAuthenticated = false;
         state.error = (action.payload as string) ?? "An error occurred";
       });
   },

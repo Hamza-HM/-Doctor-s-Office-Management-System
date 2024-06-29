@@ -1,5 +1,5 @@
 import { AppDispatch } from "@src/store";
-import { checkAuthStatus } from "@src/store/actions/authActions";
+import { listenToAuthChanges } from "@src/store/actions/authActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -15,13 +15,17 @@ const GlobalAuthProvider: React.FC<GlobalAuthProviderProps> = ({
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    dispatch(checkAuthStatus()).then(() => {
+    dispatch(listenToAuthChanges()).then(() => {
       setIsInitialized(true);
     });
   }, [dispatch]);
 
   if (!isInitialized) {
-    return <div>Initializing...</div>; // or some loading indicator
+    return (
+      <div className="global-loader-container">
+        <div className="loader "></div>;
+      </div>
+    );
   }
 
   return <>{children}</>;
