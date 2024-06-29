@@ -25,6 +25,7 @@ nav {
 .logo {
   font-size: 1.25rem;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .nav-icons {
@@ -36,6 +37,12 @@ nav {
   margin-left: 1rem;
   cursor: pointer;
   position: relative;
+}
+
+.nav-avatar {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
 }
 
 .dropdown {

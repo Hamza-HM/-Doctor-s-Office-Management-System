@@ -1,10 +1,10 @@
 import { ReactNode, useRef } from "react";
 
 interface NavIconProps {
-  icon: React.ReactElement;
+  icon: React.ReactNode;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  dropdownContent: ReactNode;
+  dropdownContent?: ReactNode;
   closeOthers: () => void;
 }
 
@@ -32,7 +32,9 @@ export const NavIcon: React.FC<NavIconProps> = ({
       </div>
       {isOpen && (
         <div className="dropdown">
-          <div className="dropdown-content">{dropdownContent}</div>
+          {dropdownContent && (
+            <div className="dropdown-content">{dropdownContent}</div>
+          )}
         </div>
       )}
     </div>

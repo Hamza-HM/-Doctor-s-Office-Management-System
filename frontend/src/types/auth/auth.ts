@@ -42,7 +42,7 @@ export interface User extends FirebaseUser {
 
 export interface AuthStateProps {
   user: User | null;
-  email: string | null;
+  email?: string | null;
   isAuthenticated: boolean | null;
   loading: boolean;
   error: string;

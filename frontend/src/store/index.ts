@@ -3,9 +3,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import authReducer from "./reducers/authReducer";
 import { appointments } from "./api/appointments";
+import userReducer from "./reducers/userReducer";
 
 export const store = configureStore({
   reducer: {
+    user: userReducer,
     auth: authReducer,
     [appointments.reducerPath]: appointments.reducer,
   },

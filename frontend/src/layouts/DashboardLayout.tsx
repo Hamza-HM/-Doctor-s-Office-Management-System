@@ -1,6 +1,4 @@
-import { DesktopNav } from "@src/components/nav/DesktopNav";
-import { MobileNav } from "@src/components/nav/MobileNav";
-
+import Navigation from "@src/components/nav/index";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -8,8 +6,7 @@ const Layout: React.FC = () => {
   return (
     <>
       <nav>
-        <DesktopNav />
-        <MobileNav />
+        <Navigation />
       </nav>
       <main>
         <Outlet />

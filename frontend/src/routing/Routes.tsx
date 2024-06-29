@@ -3,8 +3,8 @@ import AuthGuard from "./AuthGuard";
 // import { protectedLoader } from "../utils/auth/protectedLoader";
 
 import SignUp from "@src/pages/auth/Signup";
+import DashboardLayout from "@src/layouts/DashboardLayout";
 import Layout from "@src/layouts/Layout";
-import Home from "@src/pages/home/Home";
 import Dashboard from "@src/pages/dashboard/Dashboard";
 import Appointments from "@src/pages/dashboard/Appointments";
 import Login from "@src/pages/auth/Login";
@@ -14,16 +14,29 @@ import { protectedLoader } from "@src/utils/auth/protectedLoader";
 import MedicalHistory from "@src/pages/dashboard/MedicalHistory";
 import PatientsList from "@src/pages/dashboard/PatientsList";
 import Messages from "@src/pages/dashboard/Messages";
-import Profile from "@src/pages/dashboard/Profile";
+import Profile from "@src/pages/profile/Profile";
 import AuthLayout from "@src/layouts/AuthLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: (
+      <AuthGuard>
+        <Layout />
+      </AuthGuard>
+    ),
     children: [
       {
-        path: "",
-        element: <Home />,
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "notifications",
+        element: <Profile />,
+      },
+      {
+        path: "settings",
+        element: <Profile />,
       },
     ],
   },
@@ -31,7 +44,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <AuthGuard>
-        <Layout />
+        <DashboardLayout />
       </AuthGuard>
     ),
     loader: protectedLoader,
@@ -55,18 +68,6 @@ const router = createBrowserRouter([
       {
         path: "messages",
         element: <Messages />,
-      },
-      {
-        path: "profile",
-        element: <Profile />,
-      },
-      {
-        path: "notifications",
-        element: <Profile />,
-      },
-      {
-        path: "settings",
-        element: <Profile />,
       },
     ],
   },

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "@src/store";
-import { checkAuthStatus, signup } from "@src/store/actions/authActions";
+import { signup } from "@src/store/actions/authActions";
 import { FormSignupValues } from "@src/types/auth/auth";
 
 const useSignUpLogic = () => {
@@ -20,7 +20,6 @@ const useSignUpLogic = () => {
     if (data) {
       try {
         await dispatch(signup({ data })).unwrap();
-        await dispatch(checkAuthStatus()).unwrap();
       } catch (error) {
         console.error("Signup failed:", error);
       }
