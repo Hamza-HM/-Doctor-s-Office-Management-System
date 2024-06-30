@@ -5,8 +5,8 @@ A modern web application for managing doctor appointments, built with React, Typ
 ## Technologies Used
 
 - React 18
-- TypeScript 4.9+
-- Vite 4.0+ (for fast development and building)
+- TypeScript 5.2+
+- Vite 5.3+ (for fast development and building)
 - React Redux Toolkit (for state management)
 - React Router v6 (for routing)
 - Firebase (for backend and authentication)
@@ -20,10 +20,10 @@ A modern web application for managing doctor appointments, built with React, Typ
 
 ## Getting Started
 
-### Prerequisites
+### Prerequisites used
 
-- Node.js (v14.0.0 or later)
-- npm (v6.0.0 or later)
+- Node.js (20.11 or later)
+- npm (10.2 or later)
 
 ### Installation
 
