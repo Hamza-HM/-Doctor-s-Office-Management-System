@@ -23,7 +23,7 @@ const GlobalAuthProvider: React.FC<GlobalAuthProviderProps> = ({
   if (!isInitialized) {
     return (
       <div className="global-loader-container">
-        <div className="loader "></div>;
+        <div className="loader "></div>
       </div>
     );
   }
