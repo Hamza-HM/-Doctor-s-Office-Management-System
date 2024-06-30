@@ -11,6 +11,7 @@ nav {
   background-color: var(--color-white);
   color: var(--color-blue-dark);
   border-bottom: 1px solid var(--color-gray-lighter);
+  z-index: 1000;
 }
 
 /* Desktop Navigation */
@@ -79,7 +80,7 @@ nav {
 .desktop-sidebar {
   position: fixed;
   left: 0;
-  top: 4rem;
+  top: 5.8rem;
   height: calc(100vh - 4rem);
   width: 250px;
   background-color: var(--color-white);
