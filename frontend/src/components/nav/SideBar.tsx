@@ -2,6 +2,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavItem, allNavItems } from "./NavItems";
+import useLogoutLogic from "@src/hooks/useLogoutLogic";
+import { IoIosLogOut } from "react-icons/io";
 
 interface SidebarProps {
   isMobile?: boolean;
@@ -13,6 +15,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   closeMobileMenu,
 }) => {
   const location = useLocation();
+  const { handleSubmit } = useLogoutLogic();
 
   const renderNavItems = (items: NavItem[]) =>
     items.map((item) => (
@@ -33,6 +36,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {isMobile && renderNavItems(allNavItems.mobileOnly)}
       {isMobile && <div className="nav-mobile-space" />}
       {renderNavItems(allNavItems.desktopAndMobile)}
+      {isMobile && (
+        <div className="mobile-logout">
+          <IoIosLogOut />
+          <p onClick={handleSubmit}>Logout</p>
+        </div>
+      )}
     </ul>
   );
 };
