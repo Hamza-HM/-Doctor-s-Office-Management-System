@@ -69,7 +69,9 @@ export const MobileNav: React.FC = () => {
               className="burger-close-icon"
               onClick={closeMobileMenu}
             />
-            <div className="logo">Healthy 24</div>
+            <div className="logo" onClick={closeMobileMenu}>
+              Healthy 24
+            </div>
           </div>
           <Sidebar isMobile={true} closeMobileMenu={closeMobileMenu} />
         </div>

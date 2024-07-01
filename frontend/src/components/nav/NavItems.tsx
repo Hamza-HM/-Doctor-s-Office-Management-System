@@ -30,7 +30,7 @@ export const allNavItems: AllNavItems = {
     { icon: <FaCog />, name: "Settings", path: "/settings" },
   ],
   desktopAndMobile: [
-    { icon: <FaThermometerHalf />, name: "Dashboard", path: "/dashboard" },
+    { icon: <FaThermometerHalf />, name: "Dashboard", path: "/" },
     { icon: <FaListAlt />, name: "Patients List", path: "/patients" },
     { icon: <FaEnvelope />, name: "Messages", path: "/messages" },
     { icon: <FaCalendarAlt />, name: "Appointment", path: "/appointments" },

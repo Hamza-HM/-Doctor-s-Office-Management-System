@@ -5,7 +5,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 17px;
   padding: 20px;
 }
 
@@ -15,19 +15,20 @@
   margin-bottom: 20px;
 }
 
-.nav {
+.patient-list-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-gray-lighter);
+  padding: 16px 24px;
+  border-radius: 8px;
+  width: 40%;
 }
 
 .search-bar input {
@@ -35,66 +36,102 @@
   background-color: transparent;
   margin-left: 10px;
   font-size: 1rem;
+  padding: 0;
+}
+.patient-list-btn-container {
+  display: flex;
 }
 
-.button {
-  background-color: #007bff;
-  color: white;
+.patient-list-btn {
+  background-color: #eff3fa;
+  color: var(--color-blue-dark);
   border: none;
-  padding: 10px 20px;
+  padding: 16px 24px;
   border-radius: 5px;
   cursor: pointer;
   margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.patient-list-btn:hover {
+  background-color: var(--color-gray-lighter);
 }
 
 .patient-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 .patient-card {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: calc(33.333% - 20px);
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 279px;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
+.patient-avatar {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  margin: 0 auto 10px;
+  margin: 0 0 20px 0;
   display: block;
 }
 
 .patient-name {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-blue-dark);
+  margin-bottom: 13px;
 }
 
 .patient-location {
-  font-size: 0.9rem;
-  text-align: center;
-  color: #666;
+  font-size: 12px;
+  color: var(--color-gray-profile);
   margin-bottom: 10px;
 }
 
 .divider {
   border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 10px 0;
+  height: 1px;
+  width: 100%;
+  border-top: 1px solid var(--color-gray-lighter);
+  margin: 16px 0;
+}
+.patient-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .patient-info {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  width: 100%;
+}
+.patient-info-key {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-gray-profile);
+}
+.patient-info-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-blue-dark);
 }
 
-.view-detail-button {
-  width: 100%;
-  margin-top: 10px;
+.patient-card-btn {
+  margin-top: 24px;
+}
+
+.patient-card-btn:hover {
+  background-color: var(--color-blue-darker);
 }

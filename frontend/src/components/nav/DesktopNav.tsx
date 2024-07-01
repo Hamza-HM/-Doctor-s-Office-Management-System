@@ -43,7 +43,7 @@ export const DesktopNav: React.FC = () => {
   }, []);
 
   const handleRedirect = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

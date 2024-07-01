@@ -10,14 +10,15 @@
   /* colors */
   --color-white: #fff;
   --color-black: #000;
+
   --color-blue: #103f74;
   --color-blue-dark: #192252;
+  --color-blue-darker: #006ea1;
   --color-blue-lighter: #65a8fb;
   --color-gray-light: #c5d0e6;
   --color-gray-lighter: #dfe8f6;
-  --color-gray-profile: #848fac;
-
   --color-gray-darker: #d8d1d1;
+  --color-gray-profile: #848fac;
 
   /*  font weights  */
   --font-thin: 100;
@@ -31,6 +32,10 @@
 
   /*  font family  */
   --font-family-poppins: "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--font-family-poppins);
 }
 
 h1,
@@ -141,6 +146,7 @@ form {
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 1rem;
+  transition: 0.3s ease-in-out;
 }
 
 .btn:disabled {

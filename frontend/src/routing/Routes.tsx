@@ -16,8 +16,44 @@ import PatientsList from "@src/pages/dashboard/patients/PatientsList";
 import Messages from "@src/pages/dashboard/Messages";
 import Profile from "@src/pages/profile/Profile";
 import AuthLayout from "@src/layouts/AuthLayout";
+import PatientDetail from "@src/pages/dashboard/patients/PatientDetail";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <AuthGuard>
+        <DashboardLayout />
+      </AuthGuard>
+    ),
+    loader: protectedLoader,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "appointments",
+        element: <Appointments />,
+      },
+      {
+        path: "history",
+        element: <MedicalHistory />,
+      },
+      {
+        path: "patients",
+        element: <PatientsList />,
+      },
+      {
+        path: "patient-detail/:id",
+        element: <PatientDetail />,
+      },
+      {
+        path: "messages",
+        element: <Messages />,
+      },
+    ],
+  },
   {
     path: "/",
     element: (
@@ -40,37 +76,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/",
-    element: (
-      <AuthGuard>
-        <DashboardLayout />
-      </AuthGuard>
-    ),
-    loader: protectedLoader,
-    children: [
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "appointments",
-        element: <Appointments />,
-      },
-      {
-        path: "history",
-        element: <MedicalHistory />,
-      },
-      {
-        path: "patients",
-        element: <PatientsList />,
-      },
-      {
-        path: "messages",
-        element: <Messages />,
-      },
-    ],
-  },
+
   {
     path: "/auth",
     element: <AuthLayout />,

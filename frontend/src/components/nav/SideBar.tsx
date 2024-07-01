@@ -14,15 +14,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobile = false,
   closeMobileMenu,
 }) => {
-  const location = useLocation();
   const { handleSubmit } = useLogoutLogic();
+  const location = useLocation();
+
+  const handleActiveLink = (item: NavItem) => {
+    let isActive = location.pathname === item.path;
+
+    if (location.pathname.startsWith("/patient-detail/")) {
+      isActive = item.path === "/patients" || item.path === "/patient-detail";
+    }
+
+    return isActive;
+  };
 
   const renderNavItems = (items: NavItem[]) =>
     items.map((item) => (
       <li key={item.name}>
         <Link
           to={item.path}
-          className={location.pathname === item.path ? "active" : ""}
+          className={`${handleActiveLink(item) ? "active" : ""}`}
           onClick={isMobile ? closeMobileMenu : undefined}
         >
           {item.icon}

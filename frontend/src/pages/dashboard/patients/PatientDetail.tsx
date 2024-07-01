@@ -1,6 +1,7 @@
 // PatientDetail.jsx
-import React from "react";
+import React from "react"; // ,{ useEffect, useState }
 import "./styles/patientDetail.css";
+import { useParams } from "react-router-dom";
 
 const mockPatient = {
   id: 1,
@@ -39,15 +40,43 @@ const mockPatient = {
 };
 
 const PatientDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  // const [patient, setPatient] = useState<typeof mockPatient | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
+
+  console.log("patient id", id);
+  // useEffect(() => {
+  //   const fetchPatient = async () => {
+  //     try {
+  //       setLoading(true);
+  //       // Replace this with your actual API call
+  //       // const response = await fetch(`/api/patients/${id}`);
+  //       // const data = await response.json();
+  //       // setPatient(data);
+
+  //       // For now, we'll use the mock data
+  //       setPatient(mockPatient);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError("Failed to fetch patient data");
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchPatient();
+  // }, [id]);
+
+  // if (loading) return <div>Loading...</div>;
+  // if (error) return <div>{error}</div>;
   return (
     <div className="page-container">
-      <h1 className="hero">Patient Detail</h1>
       <div className="content-container">
         <div className="left-column">
           <img
             src={mockPatient.avatar}
             alt={mockPatient.name}
-            className="avatar"
+            className="patient-avatar"
           />
           <h2 className="patient-name">{mockPatient.name}</h2>
           <p className="patient-id">Patient ID: {mockPatient.patientId}</p>
