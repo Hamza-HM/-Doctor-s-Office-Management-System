@@ -12,7 +12,7 @@ import ResetPassword from "@src/pages/auth/ResetPassword";
 import ConfirmPasswordReset from "@src/pages/auth/ConfirmPasswordReset";
 import { protectedLoader } from "@src/utils/auth/protectedLoader";
 import MedicalHistory from "@src/pages/dashboard/MedicalHistory";
-import PatientsList from "@src/pages/dashboard/PatientsList";
+import PatientsList from "@src/pages/dashboard/patients/PatientsList";
 import Messages from "@src/pages/dashboard/Messages";
 import Profile from "@src/pages/profile/Profile";
 import AuthLayout from "@src/layouts/AuthLayout";
