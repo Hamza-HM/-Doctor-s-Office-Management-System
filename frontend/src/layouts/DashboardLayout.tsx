@@ -1,18 +1,24 @@
+import { Sidebar } from "@src/components/nav/SideBar";
 import Navigation from "@src/components/nav/index";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const Layout: React.FC = () => {
+import "./layouts.css";
+
+const DashboardLayout: React.FC = () => {
   return (
     <>
-      <nav>
-        <Navigation />
-      </nav>
-      <main>
-        <Outlet />
-      </main>
+      <Navigation />
+      <div className="dashboard-container">
+        <div className="desktop-sidebar">
+          <Sidebar isMobile={false} />
+        </div>
+        <main className="dashboard-main">
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 };
 
-export default Layout;
+export default DashboardLayout;
