@@ -5,14 +5,6 @@
   color: white;
 }
 
-nav {
-  width: 100%;
-  position: fixed;
-  background-color: var(--color-white);
-  color: var(--color-blue-dark);
-  border-bottom: 1px solid var(--color-gray-lighter);
-}
-
 /* Desktop Navigation */
 .desktop-nav {
   width: 100%;
@@ -20,6 +12,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  border-bottom: 1px solid var(--color-gray-lighter);
 }
 
 .logo {
@@ -76,16 +69,17 @@ nav {
 }
 
 /* Desktop Sidebar */
+
 .desktop-sidebar {
-  position: fixed;
-  left: 0;
-  top: 4rem;
-  height: calc(100vh - 4rem);
   width: 250px;
   background-color: var(--color-white);
   color: var(--color-blue-dark);
   border-right: 1px solid var(--color-gray-lighter);
   padding: 1rem 0;
+  height: calc(100vh - 5.8rem);
+  position: fixed;
+  top: 5.8rem;
+  left: 0;
 }
 
 .desktop-sidebar ul {

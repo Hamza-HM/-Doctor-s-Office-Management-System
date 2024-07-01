@@ -1,0 +1,30 @@
+/* Dashboard Layout */
+/* .dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+} */
+
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+.dashboard-main {
+  margin-left: 250px;
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    margin-left: 0;
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+    padding: 1rem;
+  }
+}
+/* Dashboard Layout */
